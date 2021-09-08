@@ -1,0 +1,16 @@
+diff --git a/Makefile b/Makefile
+index 6095f86..2bfb1d7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -237,11 +237,6 @@ $(foreach src,$(COMMON_SRCS),$(eval $(call common_obj,$(src))))
+ # Applet rules
+ #
+ define applet_obj
+-$(SRCDIR)/$(1:%.asm=%.cpp): $(SRCDIR)/$(1)
+-	@echo APPLET $(1:%.asm=%)
+-	$$(Q)$$(ARMAS) -o $$(@:$(SRCDIR)/%.cpp=$(OBJDIR)/%.obj) $$<
+-	$$(Q)$$(ARMOBJCOPY) -O binary $$(@:$(SRCDIR)/%.cpp=$(OBJDIR)/%.obj) $$(@:$(SRCDIR)/%.cpp=$(OBJDIR)/%.bin)
+-	$$(Q)./appletgen $(1:%.asm=%) $(SRCDIR) $(OBJDIR)
+ $(OBJDIR)/$(1:%.asm=%.o): $(SRCDIR)/$(1:%.asm=%.cpp)
+ 	@echo CPP APPLET $$<
+ 	$$(Q)$$(CXX) $$(COMMON_CXXFLAGS) -c -o $$(@) $$(<:%.asm=%.cpp)

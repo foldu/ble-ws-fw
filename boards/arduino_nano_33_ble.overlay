@@ -1,0 +1,16 @@
+&i2c0 {
+	status = "okay";
+	bme280@76 {
+		compatible = "bosch,bme280";
+		reg = <0x76>;
+		label = "BME280_I2C";
+	};
+};
+
+/ {
+        aliases {
+            attention-led = &led0;
+        };
+};
+
+
